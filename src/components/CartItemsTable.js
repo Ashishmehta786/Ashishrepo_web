@@ -38,7 +38,7 @@ export default function CartItemsTable() {
                             </td>
                             <td className='price-item-column'>
                                 <div class="product-price">
-                                    <p>$78</p>
+                                    <p>500₹</p>
                                 </div>
                             </td>
                             <td className='quantity-item-column'>

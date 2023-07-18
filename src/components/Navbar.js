@@ -21,6 +21,7 @@ export default function Navbar(props) {
                     </Link>
                     <Link to="/blogs" className="nav-option blog-btn">
                         <li>Blog</li>
+                      
                     </Link>
                     <Link to="/about" className="nav-option about-btn">
                         <li>About</li>
@@ -28,7 +29,10 @@ export default function Navbar(props) {
                     <Link to="/contact" className="nav-option contact-btn">
                         <li>Contact</li>
                     </Link>
+                  <Link to="/signup" className="nav-option signup-btn">
+                        <li>Signup</li></Link>
                 </ul>
+              
                 <div className="cart">
                     <Link to="/cart" className="nav-option cart-btn"><i className="fa-sharp fa-solid fa-cart-flatbed-suitcase"></i></Link>
                 </div>
@@ -55,6 +59,9 @@ export default function Navbar(props) {
                     </Link>
                     <Link to="/contact" className="nav-option contact-btn" onClick={props.handleRemoveSideMenu}>
                         <li>Contact</li>
+                    </Link>
+              <Link to="/signup" className="nav-option signup-btn" onClick={props.handleRemoveSideMenu}>
+                        <li>Signup</li>
                     </Link>
                 </ul>
                 <div className="close-side-menu" onClick={props.handleRemoveSideMenu}>

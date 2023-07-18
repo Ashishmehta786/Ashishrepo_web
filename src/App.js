@@ -9,8 +9,10 @@ import Blog from './components/BlogPage'
 import About from './components/AboutPage'
 import Contact from './components/ContactPage'
 import Cart from './components/CartPage'
+import Signup from
+  './components/signup'
 import ScrollToTop from './components/ScrollToTop'
-import loader from './loader.gif' ;
+import loader from './loader.gif';
 import { useEffect, useState } from 'react';
 import {
   BrowserRouter as Router,
@@ -19,17 +21,29 @@ import {
 } from 'react-router-dom';
 
 function App() {
-  let triggerLoader= () =>{
-    setTimeout(()=>{
+
+  const [backenddata, setdata] = useState([{}])
+  useEffect(() => {
+
+    fetch("/").then(
+      response => response.json()).then(
+        data => {
+          setdata(data)
+        }
+
+      )
+  })
+  let triggerLoader = () => {
+    setTimeout(() => {
       const loader = document.querySelector("#loader");
       const web = document.querySelector("#main-web");
       web.style.display = "none";
       loader.style.display = "flex";
-      setTimeout(()=>{
-      loader.style.display = "none";
-      web.style.display = "block";
-      },2000);
-    },0);
+      setTimeout(() => {
+        loader.style.display = "none";
+        web.style.display = "block";
+      }, 2000);
+    }, 0);
   }
   // triggerLoader();
   const [currentPage, setCurrentPage] = useState("home-btn");
@@ -42,7 +56,7 @@ function App() {
       btn.classList.remove("active");
     }
   })
-  
+
   let handleShowSideMenu = () => {
     const sideMenu = document.querySelector("#side-menu");
     sideMenu.style.display = "block";
@@ -59,29 +73,33 @@ function App() {
           <img src={loader} alt="" />
         </div>
         <div id="main-web">
-        <Navbar handleShowSideMenu={handleShowSideMenu} handleRemoveSideMenu={handleRemoveSideMenu} />
-        <Routes>
-          <Route exact path='/' element={
-            <Home setCurrentPage={setCurrentPage}  triggerLoader={triggerLoader}/>
-          }></Route>
-          <Route exact path='/shop' element={
-            <Shop setCurrentPage={setCurrentPage}  triggerLoader={triggerLoader}/>
-          }></Route>
-          <Route exact path='/blogs' element={
-            <Blog setCurrentPage={setCurrentPage}  triggerLoader={triggerLoader}/>
-          }></Route>
-          <Route exact path='/about' element={
-            <About setCurrentPage={setCurrentPage} triggerLoader={triggerLoader} />
-          }></Route>
-          <Route exact path='/contact' element={
-            <Contact setCurrentPage={setCurrentPage}  triggerLoader={triggerLoader}/>
-          }></Route>
-          <Route exact path='/cart' element={
-            <Cart setCurrentPage={setCurrentPage}  triggerLoader={triggerLoader}/>
-          }></Route>
-        </Routes>
-        <Newsletters />
-        <Footer />
+          <Navbar handleShowSideMenu={handleShowSideMenu} handleRemoveSideMenu={handleRemoveSideMenu} />
+          <Routes>
+            <Route exact path='/' element={
+              <Home setCurrentPage={setCurrentPage} triggerLoader={triggerLoader} />
+            }></Route>
+            <Route exact path='/shop' element={
+              <Shop setCurrentPage={setCurrentPage} triggerLoader={triggerLoader} />
+            }></Route>
+            <Route exact path='/blogs' element={
+              <Blog setCurrentPage={setCurrentPage} triggerLoader={triggerLoader} />
+            }></Route>
+            <Route exact path='/about' element={
+              <About setCurrentPage={setCurrentPage} triggerLoader={triggerLoader} />
+            }></Route>
+            <Route exact path='/contact' element={
+              <Contact setCurrentPage={setCurrentPage} triggerLoader={triggerLoader} />
+            }></Route>
+            <Route exact path='/Signup' element={
+              <Signup
+                setCurrentPage={setCurrentPage} triggerLoader={triggerLoader} />
+            }></Route>
+            <Route exact path='/cart' element={
+              <Cart setCurrentPage={setCurrentPage} triggerLoader={triggerLoader} />
+            }></Route>
+          </Routes>
+          <Newsletters />
+          <Footer />
         </div>
       </Router>
     </>
